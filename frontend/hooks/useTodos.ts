@@ -13,7 +13,7 @@ export interface Todo {
 
 export const useTodos = () => {
   return useQuery({
-    queryKey: ["todos"],
+    queryKey: ["todosFetch"],
     queryFn: async () => {
       const response = await api.get("/todos");
       return response.data;
@@ -29,7 +29,7 @@ export function useAddTodo() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["todosFetch"] });
     },
   });
 }
@@ -42,7 +42,7 @@ export function useUpdateTodo() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["todosFetch"] });
     },
   });
 }
@@ -55,7 +55,7 @@ export function useDeleteTodo() {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["todosFetch"] });
     },
   });
 }
